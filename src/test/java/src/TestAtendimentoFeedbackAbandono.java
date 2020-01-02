@@ -7,14 +7,14 @@ import io.restassured.http.Header;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.RepeatedTest;
-
+import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 import java.util.Random;
 
-public class TestAtendimentoRetencaoAbandono {
+public class TestAtendimentoFeedbackAbandono {
 
-    @RepeatedTest(120)
+    @RepeatedTest(190)
     public void simpleTest() {
         Faker faker = new Faker(new Locale("pt-br"));
         Random random = new Random();
@@ -22,7 +22,7 @@ public class TestAtendimentoRetencaoAbandono {
         ExtractableResponse<Response> extract;
         Header header = new Header("Authorization", "Basic YzI4YzQwNDRkY2E2Y2ZkNmVlZDUwOGEwNDJlZDYyNzM4ZTY1YTMxMTpPRXJZc1hCS0xM");
 
-        // RestAssured.proxy("http://proxy.multicert.inet:8080");
+        //RestAssured.proxy("http://proxy.multicert.inet:8080");
         RestAssured.baseURI = "https://chat-api.meudroz.com/talk";
         extract = RestAssured.
                 given().
@@ -86,9 +86,8 @@ public class TestAtendimentoRetencaoAbandono {
                 header(header).
                 body(requestTalkNext).post("/next").then().extract();
 
-        //clica em opções
         requestTalkNext = this.atualizarReferencias(extract, requestTalkNext);
-        Integer buttons = extract.jsonPath().get("buttons[" + random.nextInt(2) + "].buttonId");
+        Integer buttons = extract.jsonPath().get("buttons[3].buttonId");
         requestTalkNext.setAnswer(buttons.toString());
 
         extract = RestAssured.
@@ -100,11 +99,11 @@ public class TestAtendimentoRetencaoAbandono {
         requestTalkNext = this.atualizarReferencias(extract, requestTalkNext);
         requestTalkNext.setAnswer(buttons.toString());
 
-        RestAssured.
+       RestAssured.
                 given().
                 contentType(ContentType.JSON).
                 header(header).
-                body(requestTalkNext).post("/next");
+                body(requestTalkNext).post("/next").prettyPrint();
     }
 
     public RequestTalkNext atualizarReferencias(ExtractableResponse<Response> extract, RequestTalkNext requestTalkNext) {
