@@ -10,7 +10,7 @@ public class TestAtendimentosClientesOnline {
 
     @RepeatedTest(40)
     public void simpleTest() {
-        RestAssured.proxy("http://proxy.multicert.inet:8080");
+        //RestAssured.proxy("http://proxy.multicert.inet:8080");
         RestAssured.baseURI = "https://chat-api.meudroz.com/talk";
         ExtractableResponse<Response> extract = RestAssured.
                 given().

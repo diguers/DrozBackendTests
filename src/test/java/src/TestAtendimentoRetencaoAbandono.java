@@ -22,7 +22,7 @@ public class TestAtendimentoRetencaoAbandono {
         ExtractableResponse<Response> extract;
         Header header = new Header("Authorization", "Basic YzI4YzQwNDRkY2E2Y2ZkNmVlZDUwOGEwNDJlZDYyNzM4ZTY1YTMxMTpPRXJZc1hCS0xM");
 
-        RestAssured.proxy("http://proxy.multicert.inet:8080");
+       // RestAssured.proxy("http://proxy.multicert.inet:8080");
         RestAssured.baseURI = "https://chat-api.meudroz.com/talk";
         extract = RestAssured.
                 given().
