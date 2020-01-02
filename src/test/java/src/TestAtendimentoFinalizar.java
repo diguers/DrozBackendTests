@@ -8,13 +8,12 @@ import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.RepeatedTest;
 
-
 import java.util.Locale;
 import java.util.Random;
 
-public class TestAtendimentoRetencaoAbandono {
+public class TestAtendimentoFinalizar {
 
-    @RepeatedTest(120)
+    @RepeatedTest(140)
     public void simpleTest() {
         Faker faker = new Faker(new Locale("pt-br"));
         Random random = new Random();
@@ -104,6 +103,32 @@ public class TestAtendimentoRetencaoAbandono {
                 contentType(ContentType.JSON).
                 header(header).
                 body(requestTalkNext).post("/next").then().extract();
+
+        requestTalkNext = this.atualizarReferencias(extract, requestTalkNext);
+
+        extract = RestAssured.
+                given().
+                contentType(ContentType.JSON).
+                header(header).
+                body(requestTalkNext).post("/next").then().extract();
+
+        requestTalkNext = this.atualizarReferencias(extract, requestTalkNext);
+
+        extract = RestAssured.
+                given().
+                contentType(ContentType.JSON).
+                header(header).
+                body(requestTalkNext).post("/next").then().extract();
+
+        requestTalkNext = this.atualizarReferencias(extract, requestTalkNext);
+        requestTalkNext.setAnswer(extract.jsonPath().get("buttons[2].buttonId").toString());
+
+        extract = RestAssured.
+                given().
+                contentType(ContentType.JSON).
+                header(header).
+                body(requestTalkNext).post("/next").then().extract();
+
     }
 
     public RequestTalkNext atualizarReferencias(ExtractableResponse<Response> extract, RequestTalkNext requestTalkNext) {
