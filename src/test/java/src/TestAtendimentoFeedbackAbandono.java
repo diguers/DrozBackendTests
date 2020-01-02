@@ -17,7 +17,6 @@ public class TestAtendimentoFeedbackAbandono {
     @RepeatedTest(190)
     public void simpleTest() {
         Faker faker = new Faker(new Locale("pt-br"));
-        Random random = new Random();
         RequestTalkNext requestTalkNext = new RequestTalkNext();
         ExtractableResponse<Response> extract;
         Header header = new Header("Authorization", "Basic YzI4YzQwNDRkY2E2Y2ZkNmVlZDUwOGEwNDJlZDYyNzM4ZTY1YTMxMTpPRXJZc1hCS0xM");
