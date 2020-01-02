@@ -4,7 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.RepeatedTest;
 
-public class AtendimentosClientesOnline {
+public class TestAtendimentosClientesOnline {
 
     @RepeatedTest(40)
     public void simpleTest() {
