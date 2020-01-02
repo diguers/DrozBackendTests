@@ -102,7 +102,7 @@ public class TestAtendimentoFeedbackAbandono {
                 given().
                 contentType(ContentType.JSON).
                 header(header).
-                body(requestTalkNext).post("/next").prettyPrint();
+                body(requestTalkNext).post("/next");
     }
 
     public RequestTalkNext atualizarReferencias(ExtractableResponse<Response> extract, RequestTalkNext requestTalkNext) {

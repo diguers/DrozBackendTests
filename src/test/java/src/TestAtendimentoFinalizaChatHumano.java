@@ -173,7 +173,7 @@ public class TestAtendimentoFinalizaChatHumano {
                 given().
                 contentType(ContentType.JSON).
                 header(header).
-                body(requestTalkNext).post("/next").prettyPrint();
+                body(requestTalkNext).post("/next");
 
 
     }
